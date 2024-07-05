@@ -15,8 +15,5 @@ module.exports = {
       'warn',
       { allowConstantExport: true }
     ]
-  },
-  parserOptions: {
-    project: './tsconfig.json'
   }
 };
