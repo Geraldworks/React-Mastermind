@@ -1,8 +1,17 @@
+import Game from './views/Game';
+import Home from './views/Home';
+import Rules from './views/Rules';
+import { Routes, Route } from 'react-router-dom';
+
 function App() {
   return (
-    <>
-      <h2>this is an application</h2>
-    </>
+    <div>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/game' element={<Game />} />
+        <Route path='/rules' element={<Rules />} />
+      </Routes>
+    </div>
   );
 }
 
