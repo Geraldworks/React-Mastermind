@@ -8,6 +8,15 @@ import {
   SelectTrigger
 } from '@/components/ui/select';
 
+const DecoratedOption = ({ colour, colourClass }: { colour: string; colourClass: string }) => {
+  return (
+    <div className='flex items-center space-x-1.5'>
+      <span className={`inline-block w-3.5 h-3.5 ${colourClass} rounded-full`}></span>
+      <span>{colour}</span>
+    </div>
+  );
+};
+
 interface Props {
   arrayHandler: (colour: string) => void;
   disabled: boolean;
@@ -29,12 +38,24 @@ export function ColourInput(props: Props) {
       ></SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          <SelectItem value='red'>Red</SelectItem>
-          <SelectItem value='blue'>Blue</SelectItem>
-          <SelectItem value='green'>Green</SelectItem>
-          <SelectItem value='yellow'>Yellow</SelectItem>
-          <SelectItem value='pink'>Pink</SelectItem>
-          <SelectItem value='purple'>Purple</SelectItem>
+          <SelectItem value='red'>
+            <DecoratedOption colour='Red' colourClass={inputColourClasses['red']} />
+          </SelectItem>
+          <SelectItem value='blue'>
+            <DecoratedOption colour='Blue' colourClass={inputColourClasses['blue']} />
+          </SelectItem>
+          <SelectItem value='green'>
+            <DecoratedOption colour='Green' colourClass={inputColourClasses['green']} />
+          </SelectItem>
+          <SelectItem value='yellow'>
+            <DecoratedOption colour='Yellow' colourClass={inputColourClasses['yellow']} />
+          </SelectItem>
+          <SelectItem value='pink'>
+            <DecoratedOption colour='Pink' colourClass={inputColourClasses['pink']} />
+          </SelectItem>
+          <SelectItem value='purple'>
+            <DecoratedOption colour='Purple' colourClass={inputColourClasses['purple']} />
+          </SelectItem>
         </SelectGroup>
       </SelectContent>
     </Select>
