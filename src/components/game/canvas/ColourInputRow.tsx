@@ -51,12 +51,12 @@ const ColourInputRow = (props: Props) => {
     setChecked(true);
 
     // increasing the turn by 1
-    if (currTurn === 10) {
+    if (currTurn == 10 && !arrayEqual(answer, strArray)) {
       outcomeDispatch({ type: 'setOutcome', payload: 'lose' });
       showModal();
-    } else {
-      turnDispatch({ type: 'increment' });
     }
+
+    turnDispatch({ type: 'increment' });
   };
 
   const handleStrArray =
