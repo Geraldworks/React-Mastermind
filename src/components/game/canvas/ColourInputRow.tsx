@@ -35,7 +35,6 @@ const ColourInputRow = (props: Props) => {
   const responseArray = generateResponseLabels(checkArrays(answer, strArray));
 
   const checkAnswer = () => {
-    console.log(answer);
     // checking that all inputs are filled
     if (strArray.includes('')) {
       setNotif();
