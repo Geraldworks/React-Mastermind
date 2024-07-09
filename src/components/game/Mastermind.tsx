@@ -1,4 +1,4 @@
-import ColourInputGrid from './grid/ColourInputGrid';
+import PlayArea from './canvas/PlayArea';
 import { useEffect } from 'react';
 import { createWinningCombination } from './gameFunctions';
 import { useAnswerDispatch } from './contexts/CustomGameHooks';
@@ -14,7 +14,7 @@ const Mastermind = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <ColourInputGrid />;
+  return <PlayArea />;
 };
 
 export default Mastermind;
