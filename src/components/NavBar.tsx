@@ -11,7 +11,7 @@ interface Props {
 const NavBar = (props: Props) => {
   const { leftButtonText, leftButtonTo, rightButtonText, rightButtonTo } = props;
   return (
-    <div className='flex items-center justify-center space-x-10 m-8'>
+    <div className='flex items-center justify-center space-x-8 m-6'>
       <Link to={leftButtonTo} className={`${buttonVariants({ variant: 'outline' })}`}>
         {leftButtonText}
       </Link>

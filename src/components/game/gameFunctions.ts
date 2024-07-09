@@ -1,12 +1,19 @@
 import { inputColours } from '@/constants';
-import arrayShuffle from 'array-shuffle';
 
 export const createWinningCombination = (): string[] => {
-  return arrayShuffle(Object.values(inputColours)).slice(0, 4);
+  // allows duplicates
+  return pickValuesWithReplacement(Object.values(inputColours), 4);
 };
 
-// TODO add a way to manage dupes
+function getRandomElement<T>(arr: T[]): T {
+  const randomIndex = Math.floor(Math.random() * arr.length);
+  return arr[randomIndex];
+}
 
-// export const compareCombinations = (arr1: string[], arr2: string[]) => {
-//   return 'hi';
-// };
+function pickValuesWithReplacement<T>(arr: T[], times: number): T[] {
+  const result: T[] = [];
+  for (let i = 0; i < times; i++) {
+    result.push(getRandomElement(arr));
+  }
+  return result;
+}

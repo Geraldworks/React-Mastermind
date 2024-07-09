@@ -40,6 +40,7 @@ const ColourInputRow = (props: Props) => {
     // checking for the correct answer
     if (arrayEqual(answer, strArray)) {
       outcomeDispatch({ type: 'setOutcome', payload: 'win' });
+      turnDispatch({ type: 'setTurn', payload: 11 });
       showModal();
       return;
     }

@@ -9,6 +9,7 @@ import {
 
 import { useAnswerValue, useOutcomeValue } from '../contexts/CustomGameHooks';
 import OutcomeColourRow from './OutcomeColourRow';
+import { useState } from 'react';
 
 interface Props {
   show: boolean;
@@ -20,9 +21,13 @@ interface Props {
 
 const OutcomeModal = (props: Props) => {
   const { show, handleShow, titleText, bodyText, answerColours } = props;
+  const [retry, setRetry] = useState('Play Again');
 
   const closeModal = () => handleShow(false);
-  const restartGame = () => location.reload();
+  const restartGame = () => {
+    location.reload();
+    setRetry('Restarting...');
+  };
 
   return (
     <Dialog open={show} onOpenChange={closeModal}>
@@ -38,7 +43,7 @@ const OutcomeModal = (props: Props) => {
             Close
           </Button>
           <Button className='ml-3' type='button' variant='secondary' onClick={restartGame}>
-            Play Again
+            {retry}
           </Button>
         </div>
       </DialogContent>
