@@ -68,6 +68,7 @@ const ColourInputRow = (props: Props) => {
       <ColourInput disabled={disabled} arrayHandler={handleStrArray(1)} />
       <ColourInput disabled={disabled} arrayHandler={handleStrArray(2)} />
       <ColourInput disabled={disabled} arrayHandler={handleStrArray(3)} />
+      {/* conditionally render the check button or the feedback component */}
       <Button
         onClick={checkAnswer}
         disabled={disabled}
