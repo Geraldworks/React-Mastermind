@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import ColourInput from './ColourInput';
+import FeedbackBlock from './FeedbackBlock';
 import { useState } from 'react';
 import {
   useTurnValue,
@@ -8,6 +9,8 @@ import {
   useOutcomeDispatch
 } from '../contexts/CustomGameHooks';
 import arrayEqual from 'array-equal';
+import { checkArrays, generateResponseLabels } from '../gameFunctions';
+import { Check } from 'lucide-react';
 
 interface Props {
   turn: number;
@@ -18,6 +21,7 @@ interface Props {
 const ColourInputRow = (props: Props) => {
   const { turn, setNotif, handleShowModal } = props;
   const [strArray, setStrArray] = useState<string[]>(['', '', '', '']);
+  const [checked, setChecked] = useState(false);
 
   // handling state
   const showModal = () => handleShowModal(true);
@@ -28,6 +32,7 @@ const ColourInputRow = (props: Props) => {
   const turnDispatch = useTurnDispatch()!;
   const answer = useAnswerValue()!;
   const outcomeDispatch = useOutcomeDispatch()!;
+  const responseArray = generateResponseLabels(checkArrays(answer, strArray));
 
   const checkAnswer = () => {
     console.log(answer);
@@ -42,8 +47,9 @@ const ColourInputRow = (props: Props) => {
       outcomeDispatch({ type: 'setOutcome', payload: 'win' });
       turnDispatch({ type: 'setTurn', payload: 11 });
       showModal();
-      return;
     }
+
+    setChecked(true);
 
     // increasing the turn by 1
     if (currTurn === 10) {
@@ -68,14 +74,18 @@ const ColourInputRow = (props: Props) => {
       <ColourInput disabled={disabled} arrayHandler={handleStrArray(1)} />
       <ColourInput disabled={disabled} arrayHandler={handleStrArray(2)} />
       <ColourInput disabled={disabled} arrayHandler={handleStrArray(3)} />
-      <Button
-        onClick={checkAnswer}
-        disabled={disabled}
-        variant='outline'
-        className='ml-6 rounded-lg text-xs p-3'
-      >
-        Check
-      </Button>
+      {!checked ? (
+        <Button
+          onClick={checkAnswer}
+          disabled={disabled}
+          variant='outline'
+          className={`ml-6 rounded-lg text-xs p-2 border-2 ${checked ? 'hidden' : ''}`}
+        >
+          <Check />
+        </Button>
+      ) : (
+        <FeedbackBlock responseArray={responseArray} />
+      )}
     </div>
   );
 };
