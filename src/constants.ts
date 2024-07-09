@@ -20,10 +20,12 @@ export const inputColourClasses: ColourClasses = {
 
 export const responseColours: ColourClasses = {
   white: 'white',
-  black: 'black'
+  black: 'black',
+  blank: ''
 };
 
 export const responseColourClasses: ColourClasses = {
   white: 'bg-slate-400',
-  black: 'bg-slate-950'
+  black: 'bg-slate-950',
+  blank: ''
 };

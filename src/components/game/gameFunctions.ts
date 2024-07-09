@@ -21,10 +21,11 @@ function pickValuesWithReplacement<T>(arr: T[], times: number): T[] {
 interface Feedback {
   white: number;
   black: number;
+  blank: number;
 }
 
 export const checkArrays = (answerArray: string[], attemptArray: string[]): Feedback => {
-  const feedback: Feedback = { white: 0, black: 0 };
+  const feedback: Feedback = { white: 0, black: 0, blank: 0 };
 
   const answerHashmap = generateHashmap(answerArray);
   const attemptHashmap = generateHashmap(attemptArray);
@@ -44,6 +45,7 @@ export const checkArrays = (answerArray: string[], attemptArray: string[]): Feed
 
   feedback['white'] -= count;
   feedback['black'] += count;
+  feedback['blank'] = 4 - feedback['white'] - feedback['black'];
 
   return feedback;
 };
@@ -58,4 +60,24 @@ export const generateHashmap = <T extends string | number | symbol>(
     },
     {} as Record<T, number>
   );
+};
+
+export type Responses = 'white' | 'black' | 'blank';
+
+export const generateResponseLabels = (feedback: Feedback): Responses[] => {
+  const result: Responses[] = [];
+
+  for (let i = 0; i < feedback.black; i++) {
+    result.push('black');
+  }
+
+  for (let i = 0; i < feedback.white; i++) {
+    result.push('white');
+  }
+
+  for (let i = 0; i < feedback.blank; i++) {
+    result.push('blank');
+  }
+
+  return result;
 };
